@@ -4,8 +4,6 @@ Argo CD deploys [AI Grid Network](https://github.com/praxis-proxy/grid) v0.2.0
 across two pirate OpenShift clusters: a **hub** (enrollment + consumer gateway)
 and a **site** (provider gateway + mock model).
 
-You push changes here. Kyle's Argo CD Applications sync them. Secrets stay out
-of this repo.
 
 ## Layout
 
