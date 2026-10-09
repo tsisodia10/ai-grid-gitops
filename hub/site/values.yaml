@@ -1,0 +1,22 @@
+# Hub grid-site CRs (0.2.0)
+
+gridNetwork:
+  gridId: grid-1
+  peerTrust:
+    mode: spiffe
+  signalTransport:
+    mode: poll
+  gatewayRefs:
+    - name: grid-gateway
+      namespace: grid
+      localSiteName: hub
+
+gridSite:
+  name: hub
+  region: us-east
+
+# Peer is the site provider gateway (reachable from hub).
+peers:
+  site-a:
+    address: REPLACE_SITE_GATEWAY_HOST:8080
+    region: us-west

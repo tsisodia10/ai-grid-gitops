@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grid-hub-operator
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  sources:
+    - repoURL: ghcr.io/praxis-proxy/charts
+      chart: grid-operator
+      targetRevision: 0.2.0
+      helm:
+        valueFiles:
+          - $values/hub/operator/values.yaml
+    - repoURL: REPLACE_GITOPS_REPO_URL
+      targetRevision: main
+      ref: values
+  destination:
+    name: REPLACE_HUB_DESTINATION
+    namespace: grid
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      # CRDs and ClusterRoles are cluster-scoped; AppProject must allow them.

@@ -1,0 +1,21 @@
+# Hub enrollment (grid-enrollment 0.2.0)
+# REPLACE_ENROLLMENT_HOST must match the OpenShift Route / DNS name sites use.
+
+host: REPLACE_ENROLLMENT_HOST
+
+image:
+  repository: ghcr.io/praxis-proxy/grid-enrollment
+  tag: v0.2.0
+
+# Mint invites for the hub itself and for site-a.
+invites:
+  hub:
+    network: grid
+  site-a:
+    network: grid
+
+route:
+  enabled: auto
+  host: REPLACE_ENROLLMENT_HOST
+  tls:
+    termination: passthrough

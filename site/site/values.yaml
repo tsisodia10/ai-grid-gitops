@@ -1,0 +1,22 @@
+# Site grid-site CRs (0.2.0)
+
+gridNetwork:
+  gridId: grid-1
+  peerTrust:
+    mode: spiffe
+  signalTransport:
+    mode: poll
+
+gridSite:
+  name: site-a
+  region: us-west
+
+peers:
+  hub:
+    region: us-east
+
+# Points at the mock model Service in namespace model.
+inferenceProviders:
+  model:
+    endpoint: http://model.model.svc.cluster.local:8000
+    model: Qwen/Qwen3-0.6B

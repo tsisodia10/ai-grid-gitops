@@ -1,0 +1,30 @@
+# Site grid-operator (0.2.0)
+
+swim:
+  siteName: site-a
+  # Hub SWIM seed (UDP 7946), reachable from this cluster.
+  seeds: REPLACE_HUB_SWIM_HOST:7946
+  service:
+    enabled: true
+    type: LoadBalancer
+    # loadBalancerIP: REPLACE_SITE_SWIM_IP
+
+enrollment:
+  enabled: true
+  # OpenShift Route hostname on the hub (passthrough TLS).
+  url: https://REPLACE_ENROLLMENT_HOST
+
+grid:
+  peerTrust: spiffe
+  signals: poll
+
+signals:
+  enabled: true
+  service:
+    enabled: true
+    type: LoadBalancer
+    # loadBalancerIP: REPLACE_SITE_SIGNALS_IP
+
+image:
+  repository: ghcr.io/praxis-proxy/grid-operator
+  tag: v0.2.0

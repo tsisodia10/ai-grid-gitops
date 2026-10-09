@@ -1,0 +1,29 @@
+# Hub grid-operator (0.2.0)
+
+swim:
+  siteName: hub
+  service:
+    enabled: true
+    type: LoadBalancer
+    # Optional pinned LB address once pirate assigns one:
+    # loadBalancerIP: REPLACE_HUB_SWIM_IP
+
+enrollment:
+  enabled: true
+  # Hub enrolls against its own in-cluster enrollment service by default.
+  # Override only if enrollment runs elsewhere.
+
+grid:
+  peerTrust: spiffe
+  signals: poll
+
+signals:
+  enabled: true
+  service:
+    enabled: true
+    type: LoadBalancer
+    # loadBalancerIP: REPLACE_HUB_SIGNALS_IP
+
+image:
+  repository: ghcr.io/praxis-proxy/grid-operator
+  tag: v0.2.0

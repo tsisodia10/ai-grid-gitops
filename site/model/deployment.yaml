@@ -1,0 +1,53 @@
+# CPU mock model for the getting-started path (not a GPU llm-d pool).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model
+  namespace: model
+  labels:
+    app: model
+    app.kubernetes.io/part-of: ai-grid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model
+  template:
+    metadata:
+      labels:
+        app: model
+    spec:
+      containers:
+        - name: model
+          image: ghcr.io/neuralmagic/vllm-vcr:vllm0.23
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: MODEL
+              value: Qwen/Qwen3-0.6B
+            - name: VLLM_PORT
+              value: "8000"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model
+  namespace: model
+  labels:
+    app: model
+    app.kubernetes.io/part-of: ai-grid
+spec:
+  selector:
+    app: model
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000

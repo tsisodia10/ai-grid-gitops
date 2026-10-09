@@ -1,0 +1,22 @@
+# Site provider gateway (praxis-gateway 0.2.0)
+
+image:
+  repository: ghcr.io/praxis-proxy/grid-gateway
+  tag: v0.2.0
+
+fullnameOverride: grid-gateway
+
+service:
+  type: LoadBalancer
+  # loadBalancerIP: REPLACE_SITE_GATEWAY_IP
+
+gatewayConfig:
+  role: provider
+  localSite: site-a
+  peerTrust:
+    mode: spiffe
+    # Only the hub consumer may call this provider.
+    spiffeId: spiffe://grid.internal/site/hub
+  backends:
+    local:
+      endpoint: model.model.svc.cluster.local:8000

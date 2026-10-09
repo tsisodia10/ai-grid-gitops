@@ -1,0 +1,11 @@
+# Never commit enrollment or SWIM material
+*.key
+*.crt
+*.pem
+*invite*
+secrets/
+.env
+config.local.yaml
+**/grid-swim-key*
+**/grid-ca*
+**/grid-invite*

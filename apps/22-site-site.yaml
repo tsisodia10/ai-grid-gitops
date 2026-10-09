@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grid-site-crs
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  project: default
+  sources:
+    - repoURL: ghcr.io/praxis-proxy/charts
+      chart: grid-site
+      targetRevision: 0.2.0
+      helm:
+        valueFiles:
+          - $values/site/site/values.yaml
+    - repoURL: REPLACE_GITOPS_REPO_URL
+      targetRevision: main
+      ref: values
+  destination:
+    name: REPLACE_SITE_DESTINATION
+    namespace: grid
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true

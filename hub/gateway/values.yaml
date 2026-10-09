@@ -1,0 +1,18 @@
+# Hub consumer gateway (praxis-gateway 0.2.0)
+# Chart default image is not the grid gateway; pin both fields.
+
+image:
+  repository: ghcr.io/praxis-proxy/grid-gateway
+  tag: v0.2.0
+
+fullnameOverride: grid-gateway
+
+gatewayConfig:
+  localSite: hub
+  model: Qwen/Qwen3-0.6B
+  # Lab / pirate only. Behind a trusted front door; use api-key in production.
+  auth:
+    mode: none
+  backends:
+    site-a:
+      endpoint: REPLACE_SITE_GATEWAY_HOST:8080

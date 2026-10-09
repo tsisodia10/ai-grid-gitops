@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grid-site-namespaces
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  source:
+    repoURL: REPLACE_GITOPS_REPO_URL
+    targetRevision: main
+    path: site
+    directory:
+      include: namespaces.yaml
+  destination:
+    name: REPLACE_SITE_DESTINATION
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
