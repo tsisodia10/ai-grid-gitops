@@ -14,11 +14,11 @@ spec:
       helm:
         valueFiles:
           - $values/site/operator/values.yaml
-    - repoURL: REPLACE_GITOPS_REPO_URL
+    - repoURL: https://github.com/tsisodia10/ai-grid-gitops.git
       targetRevision: main
       ref: values
   destination:
-    name: REPLACE_SITE_DESTINATION
+    server: https://cluster-proxy-addon-user.multicluster-engine.svc.cluster.local:9092/pirate2
     namespace: grid
   syncPolicy:
     syncOptions:

@@ -1,7 +1,7 @@
 # Hub enrollment (grid-enrollment 0.2.0)
-# REPLACE_ENROLLMENT_HOST must match the OpenShift Route / DNS name sites use.
+# Stable OpenShift Route host used by sites for enrollment.
 
-host: REPLACE_ENROLLMENT_HOST
+host: grid-enrollment.apps.openshift.nm.rdu4.corp.redhat.com
 
 image:
   repository: ghcr.io/praxis-proxy/grid-enrollment
@@ -16,6 +16,6 @@ invites:
 
 route:
   enabled: auto
-  host: REPLACE_ENROLLMENT_HOST
+  host: grid-enrollment.apps.openshift.nm.rdu4.corp.redhat.com
   tls:
     termination: passthrough

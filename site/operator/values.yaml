@@ -12,7 +12,7 @@ swim:
 enrollment:
   enabled: true
   # OpenShift Route hostname on the hub (passthrough TLS).
-  url: https://REPLACE_ENROLLMENT_HOST
+  url: https://grid-enrollment.apps.openshift.nm.rdu4.corp.redhat.com
 
 grid:
   peerTrust: spiffe

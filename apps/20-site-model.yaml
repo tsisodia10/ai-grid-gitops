@@ -8,11 +8,11 @@ metadata:
 spec:
   project: grid-workloads
   source:
-    repoURL: REPLACE_GITOPS_REPO_URL
+    repoURL: https://github.com/tsisodia10/ai-grid-gitops.git
     targetRevision: main
     path: site/model
   destination:
-    name: REPLACE_SITE_DESTINATION
+    server: https://cluster-proxy-addon-user.multicluster-engine.svc.cluster.local:9092/pirate2
     namespace: model
   syncPolicy:
     syncOptions:

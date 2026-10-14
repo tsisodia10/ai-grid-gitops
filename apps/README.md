@@ -2,11 +2,20 @@
 
 Kyle installs these into `openshift-gitops` (or wraps them in an app-of-apps).
 
-Replace before apply:
+Configured in the Applications:
 
-- `REPLACE_GITOPS_REPO_URL` — this repository HTTPS URL
-- `REPLACE_HUB_DESTINATION` — hub cluster name or API URL known to Argo
-- `REPLACE_SITE_DESTINATION` — site (second pirate) cluster name or API URL
+* Git source: `https://github.com/tsisodia10/ai-grid-gitops.git`
+* Hub destination: `https://kubernetes.default.svc` (local pirate cluster)
+* Site destination:
+  `https://cluster-proxy-addon-user.multicluster-engine.svc.cluster.local:9092/pirate2`
+
+Still required before applying:
+
+* `REPLACE_*` values in the Helm values for cluster-specific SWIM / gateway
+  addresses
+
+All child Applications use manual sync. Trigger sync after reviewing and pushing
+changes to this repository.
 
 Suggested sync order:
 

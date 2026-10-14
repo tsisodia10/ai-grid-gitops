@@ -27,13 +27,16 @@ Images and charts come from `ghcr.io/praxis-proxy` at version `0.2.0`.
 
 ## Before first sync
 
-1. Fill the `REPLACE_*` placeholders in every `values.yaml` and in `apps/*.yaml`
-   (repo URL, cluster destinations, enrollment host, SWIM / gateway addresses).
+1. Fill the remaining `REPLACE_*` values in the Helm values for SWIM /
+   gateway addresses.
 2. Kyle installs the Applications from `apps/` (or an app-of-apps) into
    `openshift-gitops`, with permission to create CRDs, ClusterRoles, and the
    namespaces above on both clusters.
 3. Sync hub enrollment first, then hub operator / site / gateway, then site
    after secrets are copied.
+
+All child Applications use manual sync; trigger each sync after reviewing the
+corresponding Git change.
 
 ## Secrets (not in Git)
 

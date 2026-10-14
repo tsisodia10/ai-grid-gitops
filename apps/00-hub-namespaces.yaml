@@ -8,16 +8,14 @@ metadata:
 spec:
   project: grid-workloads
   source:
-    repoURL: REPLACE_GITOPS_REPO_URL
+    repoURL: https://github.com/tsisodia10/ai-grid-gitops.git
     targetRevision: main
     path: hub
     directory:
       include: namespaces.yaml
   destination:
-    name: REPLACE_HUB_DESTINATION
+    server: https://kubernetes.default.svc
   syncPolicy:
-    automated:
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
