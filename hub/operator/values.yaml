@@ -10,8 +10,9 @@ swim:
 
 enrollment:
   enabled: true
-  # Hub enrolls against its own in-cluster enrollment service by default.
-  # Override only if enrollment runs elsewhere.
+  # Chart default assumes Service name "grid-enrollment"; our Argo release
+  # is grid-hub-enrollment, so the Service is release-prefixed. Cert SAN matches.
+  url: https://grid-hub-enrollment-grid-enrollment.grid-enrollment.svc:8443
 
 grid:
   peerTrust: spiffe
