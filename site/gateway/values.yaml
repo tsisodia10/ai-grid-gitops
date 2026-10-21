@@ -19,4 +19,10 @@ gatewayConfig:
     spiffeId: spiffe://grid.internal/site/hub
   backends:
     local:
+      # Mock model is an in-cluster Service (private DNS). Chart requires these
+      # for plaintext private endpoints — see praxis-gateway values docs.
       endpoint: model.model.svc.cluster.local:8000
+      trustPrivate: true
+      allowPlaintextTrust: true
+      transport:
+        mode: plaintext
