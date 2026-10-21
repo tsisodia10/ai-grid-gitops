@@ -15,8 +15,9 @@ gridSite:
   name: hub
   region: us-east
 
-# Peer is the site provider gateway (reachable from hub).
-peers:
-  site-a:
-    address: REPLACE_SITE_GATEWAY_HOST:8080
-    region: us-west
+# Add site-a peer after the site gateway is up and reachable from hub:
+# peers:
+#   site-a:
+#     address: <site-gateway-host>:8080
+#     region: us-west
+peers: {}
