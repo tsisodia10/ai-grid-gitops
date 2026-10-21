@@ -2,11 +2,16 @@
 
 swim:
   siteName: hub
+  # Pirate has no Service LoadBalancer allocator. Use the existing UDP NodePort.
+  advertiseAddress: "10.14.217.16:31610"
   service:
     enabled: true
     type: LoadBalancer
-    # Optional pinned LB address once pirate assigns one:
-    # loadBalancerIP: REPLACE_HUB_SWIM_IP
+    externalTrafficPolicy: Local
+
+# Local traffic policy requires the advertised node to host the operator.
+nodeSelector:
+  kubernetes.io/hostname: a100-03
 
 enrollment:
   enabled: true
@@ -20,10 +25,14 @@ grid:
 
 signals:
   enabled: true
+  advertiseAddress: "10.14.217.16:31646"
   service:
     enabled: true
     type: LoadBalancer
-    # loadBalancerIP: REPLACE_HUB_SIGNALS_IP
+    externalTrafficPolicy: Local
+
+# These addresses reuse allocated NodePorts on the existing Services. If either
+# Service is recreated, confirm its NodePort and update the matching address.
 
 image:
   repository: ghcr.io/praxis-proxy/grid-operator
