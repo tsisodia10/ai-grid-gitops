@@ -2,12 +2,11 @@
 
 swim:
   siteName: site-a
-  # Hub SWIM seed (UDP 7946), reachable from this cluster.
-  seeds: REPLACE_HUB_SWIM_HOST:7946
+  # Hub SWIM seed via NodePort (lab workaround until LoadBalancer VIP exists).
+  seeds: 10.14.217.16:31610
   service:
     enabled: true
-    type: LoadBalancer
-    # loadBalancerIP: REPLACE_SITE_SWIM_IP
+    type: NodePort
 
 enrollment:
   enabled: true
@@ -22,8 +21,7 @@ signals:
   enabled: true
   service:
     enabled: true
-    type: LoadBalancer
-    # loadBalancerIP: REPLACE_SITE_SIGNALS_IP
+    type: NodePort
 
 image:
   repository: ghcr.io/praxis-proxy/grid-operator

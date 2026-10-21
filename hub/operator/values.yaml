@@ -2,11 +2,13 @@
 
 swim:
   siteName: hub
+  # Pirate has no LoadBalancer VIP yet — NodePort for initial stand-up.
+  # Advertise node InternalIP + allocated NodePort (UDP). Revisit when infra
+  # assigns a real EXTERNAL-IP / MetalLB VIP.
+  advertiseAddress: 10.14.217.16:31610
   service:
     enabled: true
-    type: LoadBalancer
-    # Optional pinned LB address once pirate assigns one:
-    # loadBalancerIP: REPLACE_HUB_SWIM_IP
+    type: NodePort
 
 enrollment:
   enabled: true
@@ -20,10 +22,11 @@ grid:
 
 signals:
   enabled: true
+  # Required when Service is not LoadBalancer (see chart).
+  advertiseAddress: 10.14.217.16:31646
   service:
     enabled: true
-    type: LoadBalancer
-    # loadBalancerIP: REPLACE_HUB_SIGNALS_IP
+    type: NodePort
 
 image:
   repository: ghcr.io/praxis-proxy/grid-operator
