@@ -15,9 +15,8 @@ gridSite:
   name: hub
   region: us-east
 
-# Add site-a peer after the site gateway is up and reachable from hub:
-# peers:
-#   site-a:
-#     address: <site-gateway-host>:8080
-#     region: us-west
-peers: {}
+# Peer provider gateway on pirate2 (NodePort).
+peers:
+  site-a:
+    address: 10.14.217.3:32191
+    region: us-west

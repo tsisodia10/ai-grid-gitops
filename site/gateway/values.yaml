@@ -6,9 +6,9 @@ image:
 
 fullnameOverride: grid-gateway
 
+# No LB VIP on pirate2 — NodePort (32191 allocated).
 service:
-  type: LoadBalancer
-  # loadBalancerIP: REPLACE_SITE_GATEWAY_IP
+  type: NodePort
 
 gatewayConfig:
   role: provider

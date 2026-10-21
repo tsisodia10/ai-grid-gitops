@@ -4,6 +4,8 @@ swim:
   siteName: site-a
   # Hub SWIM seed via NodePort (lab workaround until LoadBalancer VIP exists).
   seeds: 10.14.217.16:31610
+  # pirate2 cpu-03 InternalIP + SWIM NodePort
+  advertiseAddress: 10.14.217.3:30653
   service:
     enabled: true
     type: NodePort
@@ -19,6 +21,7 @@ grid:
 
 signals:
   enabled: true
+  advertiseAddress: 10.14.217.3:32317
   service:
     enabled: true
     type: NodePort

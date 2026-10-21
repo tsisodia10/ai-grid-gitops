@@ -7,6 +7,11 @@ image:
 
 fullnameOverride: grid-gateway
 
+tls:
+  enabled: true
+  existingSecret: grid-site-identity
+  caSecret: grid-ca
+
 gatewayConfig:
   localSite: hub
   model: Qwen/Qwen3-0.6B
@@ -15,4 +20,8 @@ gatewayConfig:
     mode: none
   backends:
     site-a:
-      endpoint: REPLACE_SITE_GATEWAY_HOST:8080
+      # pirate2 cpu-03 + grid-gateway NodePort (LB still pending)
+      endpoint: 10.14.217.3:32191
+      transport:
+        mode: mutual_tls
+        sni: site-a.grid.internal
